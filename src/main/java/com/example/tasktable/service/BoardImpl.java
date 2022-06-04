@@ -29,7 +29,8 @@ public class BoardImpl implements BoardService{
 
     @Override
     public BoardDTO updateBoard(long boardId, BoardDTO boardDTO) {
-        Board board=this.boardRepository.findById(boardId).orElseThrow(()->new ResourceNotFoundException("Board","Id",boardId));
+        Board board=this.boardRepository.findById(boardId)
+                .orElseThrow(()->new ResourceNotFoundException("Board","Id",boardId));
         board.setNombre(boardDTO.getNombre());
         Board boardActualizada=this.boardRepository.save(board);
         return mapToDTO(boardActualizada);
